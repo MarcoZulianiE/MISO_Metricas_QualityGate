@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>co.edu.uniandes.dse</groupId>
-	<artifactId>quality gate</artifactId>
+	<artifactId>quality_gate</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>quality gate</name>
+	<name>quality_gate</name>
 	<description>Course Project for MISO</description>
 	<properties>	
 		<java.version>11</java.version>
