@@ -27,6 +27,8 @@ public class ArtistaEntity extends BaseEntity {
 	//Change
 	private String nombre;
 	private String imagen;
+	private String direccion;
+	private String barrio;
 	
 	@PodamExclude
 	@ManyToOne
