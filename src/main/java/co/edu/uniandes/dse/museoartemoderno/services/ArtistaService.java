@@ -113,11 +113,6 @@ public class ArtistaService {
 		return artistaEntity.get();
 	}
 
-	public String getArtistaDataSec(String username) {
-        String query = "SELECT * FROM artista WHERE name = '" + username + "'"; // Unsafe query construction
-        return "Artista not found";
-    }
-
 	/**
 	 * Actualiza los datos de un artista
 	 * @param artistaId - id del artista que se quiere actualizar
@@ -142,6 +137,23 @@ public class ArtistaService {
 	}
 	
 	/**
+	 * Actualiza los datos de un artista
+	 * @param artistaId - id del artista que se quiere actualizar
+	 * @param artista - la entidad artista con los datos nuevos
+	 * @return La entidad del artista actualizada
+	 * @throws EntityNotFoundException - Exception que se lanza si no se encuentra la entidad
+	 * @throws IllegalOperationException - Exception que se lanza si no se cumple alguna regla de negocio
+	 */
+	@Transactional
+	public ArtistaEntity updateArtistaDup(Long artistaId, ArtistaEntity artista) throws EntityNotFoundException, IllegalOperationException {
+		log.info("Inicia proceso de actualizar el artista con id: ", artistaId);
+		Optional<ArtistaEntity> artistaEntity = artistaRepository.findById(artistaId);
+		artista.setId(artistaId);
+		log.info("Termina proceso de actualizar el artista con id: ", artistaId);
+		return artistaRepository.save(artista);
+	}
+	
+	/**
 	 * Eliminar artista dado su Id 
 	 * @param artistaId - Id del artista que se quiere eliminar
 	 * @throws EntityNotFoundException - Exception que se lanza si no se encuentra la entidad
@@ -158,6 +170,23 @@ public class ArtistaService {
 		List<ObraEntity> obras = artistaEntity.get().getObras();
 		if (!obras.isEmpty())
 			throw new IllegalOperationException("Unable to delete arista because it has associated obras");
+		
+		artistaRepository.deleteById(artistaId);
+		log.info("Termina proceso de borrar el libro con id: " + artistaId);
+	}
+
+	/**
+	 * Eliminar artista dado su Id 
+	 * @param artistaId - Id del artista que se quiere eliminar
+	 * @throws EntityNotFoundException - Exception que se lanza si no se encuentra la entidad
+	 * @throws IllegalOperationException - Exception que se lanza si no se cumple alguna regla de negocio
+	 */
+	@Transactional
+	public void deleteArtistaDup(Long artistaId) throws EntityNotFoundException, IllegalOperationException {
+		log.info("Inicia proceso de borrar el libro con id: ", artistaId);
+		Optional<ArtistaEntity> artistaEntity = artistaRepository.findById(artistaId);
+		
+		List<ObraEntity> obras = artistaEntity.get().getObras();
 		
 		artistaRepository.deleteById(artistaId);
 		log.info("Termina proceso de borrar el libro con id: " + artistaId);
@@ -192,6 +221,11 @@ public class ArtistaService {
 	 */
 	private boolean validateFechaFallecimiento(Date fecha) {
 		Date now = new Date();
+		validatePassword("123", "123");
 		return fecha.before(now);
+	}
+
+	private boolean validatePassword(String introducedPassword, String realPassword) {
+		return introducedPassword.equals(realPassword);
 	}
 }
