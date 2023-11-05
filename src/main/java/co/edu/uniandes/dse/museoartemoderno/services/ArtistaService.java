@@ -112,6 +112,12 @@ public class ArtistaService {
 		log.info("Termina proceso de consultar el artista con id: " + artistaId);
 		return artistaEntity.get();
 	}
+
+	public String getArtistaDataSec(String username) {
+        String query = "SELECT * FROM artista WHERE name = '" + username + "'"; // Unsafe query construction
+        return "Artista not found";
+    }
+
 	/**
 	 * Actualiza los datos de un artista
 	 * @param artistaId - id del artista que se quiere actualizar
