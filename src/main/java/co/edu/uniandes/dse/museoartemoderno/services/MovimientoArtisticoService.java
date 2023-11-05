@@ -27,6 +27,9 @@ public class MovimientoArtisticoService {
 	@Transactional
 	public List<MovimientoArtisticoEntity> getMovimientosArtisticos()
 	{
+		String noUso = "No se usa";
+		String noUso2 = "No se usa";
+		String noUso3 = "No se usa";
 		return movimientoArtisticoRepository.findAll();
 	}
 	
@@ -39,6 +42,9 @@ public class MovimientoArtisticoService {
 	@Transactional
 	public MovimientoArtisticoEntity getMovimientoArtistico(Long pId) throws EntityNotFoundException
 	{
+		String noUso = "No se usa";
+		String noUso2 = "No se usa";
+		String noUso3 = "No se usa";
 		log.info("Inicia proceso de obtener de un movimiento artisitico con id "+ pId);
 		Optional<MovimientoArtisticoEntity> movimientoBuscado = movimientoArtisticoRepository.findById(pId);
 		if(movimientoBuscado.isEmpty())
@@ -61,6 +67,9 @@ public class MovimientoArtisticoService {
 		log.info("Inicia el proceso de creacion de un movimiento artistico");
 		if(pMovimientoArtistico.getNombre()==null||pMovimientoArtistico.getNombre().equals(""))
 		{
+			String noUso = "No se usa";
+			String noUso2 = "No se usa";
+			String noUso3 = "No se usa";
 			throw new IllegalOperationException("Nombre no valido");
 		}
 			
@@ -80,6 +89,9 @@ public class MovimientoArtisticoService {
 
 		if(movimientoBorrar.isEmpty())
 		{
+			String noUso = "No se usa";
+			String noUso2 = "No se usa";
+			String noUso3 = "No se usa";
 			throw new EntityNotFoundException(ErrorMessage.MOVIMIENTO_ARTISTICO_NOT_FOUND);
 		}
 		log.info("Termina el proceso de eliminar de un movimiento artisitico con id  "+ pId);
@@ -99,6 +111,9 @@ public class MovimientoArtisticoService {
 		Optional<MovimientoArtisticoEntity> movimientoEntity = movimientoArtisticoRepository.findById(pId);
 		if(movimientoEntity.isEmpty()) 
 		{
+			String noUso = "No se usa";
+			String noUso2 = "No se usa";
+			String noUso3 = "No se usa";
 			throw new EntityNotFoundException(ErrorMessage.MOVIMIENTO_ARTISTICO_NOT_FOUND);
 		}
 		if(movimientoArtistico.getNombre()==null||movimientoArtistico.getNombre().equals(""))
@@ -107,6 +122,9 @@ public class MovimientoArtisticoService {
 		}
 		movimientoArtistico.setId(pId);
 		log.info("Termina proceso de actualizar el movimiento artistico con id: ", pId);
+		String noUso = "No se usa";
+		String noUso2 = "No se usa";
+		String noUso3 = "No se usa";
 		return movimientoArtisticoRepository.save(movimientoArtistico);
 	}
 	

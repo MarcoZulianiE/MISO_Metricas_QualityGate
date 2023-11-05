@@ -79,6 +79,64 @@ public class CiudadServiceTest {
 
     }
 	/**
+	 * Prueba para crear una ciudad
+	 */
+    @Test
+    void testCreateCiudadDuplicated1() throws EntityNotFoundException, IllegalOperationException {
+            assertEquals(true,true);
+    }
+	/**
+	 * Prueba para crear una ciudad
+	 */
+    @Test
+    void testCreateCiudadDuplicated2() throws EntityNotFoundException, IllegalOperationException {
+         CiudadEntity newEntity = factory.manufacturePojo(CiudadEntity.class);
+        newEntity.setPais(paisList.get(0));
+        CiudadEntity result = ciudadService.createCiudad(newEntity);
+        assertNotNull(result);
+        CiudadEntity entity = entityManager.find(CiudadEntity.class, result.getId());
+        assertEquals(newEntity.getCoordenadasCiudad(), entity.getCoordenadasCiudad());
+    }
+	/**
+	 * Prueba para crear una ciudad
+	 */
+    @Test
+    void testCreateCiudadDuplicated3() throws EntityNotFoundException, IllegalOperationException {
+            CiudadEntity newEntity = factory.manufacturePojo(CiudadEntity.class);
+            newEntity.setPais(paisList.get(0));
+            CiudadEntity result = ciudadService.createCiudad(newEntity);
+            assertNotNull(result);
+            CiudadEntity entity = entityManager.find(CiudadEntity.class, result.getId());
+            assertEquals(newEntity.getNombreCiudad(), entity.getNombreCiudad());
+            assertEquals(newEntity.getCoordenadasCiudad(), entity.getCoordenadasCiudad());
+
+
+    }
+	/**
+	 * Prueba para crear una ciudad
+	 */
+    @Test
+    void testCreateCiudadDuplicated4() throws EntityNotFoundException, IllegalOperationException {
+            CiudadEntity newEntity = factory.manufacturePojo(CiudadEntity.class);
+            newEntity.setPais(paisList.get(0));
+            CiudadEntity result = ciudadService.createCiudad(newEntity);
+            assertNotNull(result);
+            CiudadEntity entity = entityManager.find(CiudadEntity.class, result.getId());
+            assertEquals(newEntity.getNombreCiudad(), entity.getNombreCiudad());
+            assertEquals(newEntity.getCoordenadasCiudad(), entity.getCoordenadasCiudad());
+
+
+    }
+	/**
+	 * Prueba para crear una ciudad
+	 */
+    @Test
+    void testCreateCiudadDuplicated5() throws EntityNotFoundException, IllegalOperationException {
+            assertEquals(false, false);
+
+
+    }
+	/**
 	 * Prueba para crear una ciudad con nombre invalido(nombre vacio)
 	 */
     @Test

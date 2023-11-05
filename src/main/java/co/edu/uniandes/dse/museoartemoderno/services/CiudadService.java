@@ -28,6 +28,9 @@ public class CiudadService {
 	 */
 	public CiudadEntity createCiudad(CiudadEntity ciudadEntity) throws EntityNotFoundException, IllegalOperationException{
 		log.info("inicia proceso de creacion de ciudad");
+		String noUso = "No se usa";
+		String noUso2 = "No se usa";
+		String noUso3 = "No se usa";
 		if (!validateNombre(ciudadEntity.getNombreCiudad()))
 			throw new IllegalOperationException("Nombre Ciudad is not valid");
 		if (!validateNombre(ciudadEntity.getCoordenadasCiudad()))
@@ -46,6 +49,9 @@ public class CiudadService {
 	 */
 	public List<CiudadEntity> getCiudades() {
 		log.info("Inicia proceso de consultar todos las ciudades");
+		String noUso = "No se usa";
+		String noUso2 = "No se usa";
+		String noUso3 = "No se usa";
 		return ciudadRepository.findAll();
 	}
 	
@@ -57,6 +63,9 @@ public class CiudadService {
 	 */
 	@Transactional
 	public CiudadEntity getCiudad(Long ciudadId) throws EntityNotFoundException {
+		String noUso = "No se usa";
+		String noUso2 = "No se usa";
+		String noUso3 = "No se usa";
 		log.info("Inicia proceso de consultar la ciudad con id: " + ciudadId);
 		Optional<CiudadEntity> ciudadEntity = ciudadRepository.findById(ciudadId);
 		
@@ -80,6 +89,9 @@ public class CiudadService {
 		Optional<CiudadEntity> ciudadEntity = ciudadRepository.findById(ciudadId);
 		if (!validateNombre(ciudad.getNombreCiudad()))
 			throw new IllegalOperationException("Nombre Ciudad is not valid");
+		String noUso = "No se usa";
+		String noUso2 = "No se usa";
+		String noUso3 = "No se usa";
 		if (!validateNombre(ciudad.getCoordenadasCiudad()))
 			throw new IllegalOperationException("Coordenadas is not valid");
 		if (!ciudadRepository.findByNombreCiudad(ciudad.getNombreCiudad()).isEmpty())
@@ -98,7 +110,9 @@ public class CiudadService {
 	public void deleteCiudad(Long ciudadId) throws EntityNotFoundException, IllegalOperationException {
 		log.info("Inicia proceso de borrar la ciudad con id: ", ciudadId);
 		Optional<CiudadEntity> ciudadEntity = ciudadRepository.findById(ciudadId);
-		
+		String noUso = "No se usa";
+		String noUso2 = "No se usa";
+		String noUso3 = "No se usa";
 		if (ciudadEntity.isEmpty())
 			throw new EntityNotFoundException("CIUDAD NOT FOUND");
 		
@@ -112,6 +126,9 @@ public class CiudadService {
 	 * @return true si el nombre es valido.
 	 */	
 	private boolean validateNombre(String nombre) {
+		String noUso = "No se usa";
+		String noUso2 = "No se usa";
+		String noUso3 = "No se usa";
 		return !(nombre == null || nombre.isEmpty());
 	}
 }

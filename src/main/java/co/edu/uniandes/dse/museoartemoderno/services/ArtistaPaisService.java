@@ -48,6 +48,31 @@ public class ArtistaPaisService {
 
 		return artistaEntity.get();
 	}
+
+	/**
+	 * Remplazar el pais de un artista.
+	 *
+	 * @param artistaId      id del artista que se quiere actualizar.
+	 * @param paisId El id del pais que se será del artista.
+	 * @return el nuevo artista.
+	 */
+
+	@Transactional
+	public ArtistaEntity replaceLugarNacimientoDuplicated(Long artistaId, Long paisId) throws EntityNotFoundException {
+		log.info("Inicia proceso de actualizar el artista con id: ", artistaId);
+		Optional<ArtistaEntity> artistaEntity = artistaRepository.findById(artistaId);
+		if (artistaEntity.isEmpty())
+			throw new EntityNotFoundException(ErrorMessage.ARTISTA_NOT_FOUND);
+
+		Optional<PaisEntity> paisEntity = paisRepository.findById(paisId);
+		if (paisEntity.isEmpty())
+			throw new EntityNotFoundException(ErrorMessage.PAIS_NOT_FOUND);
+
+		artistaEntity.get().setLugarNacimiento(paisEntity.get());
+		log.info("Termina proceso de actualizar el artista con id: ", artistaId);
+
+		return artistaEntity.get();
+	}
 	
 	/**
 	 * Remplazar el pais de un artista.
@@ -59,6 +84,31 @@ public class ArtistaPaisService {
 
 	@Transactional
 	public ArtistaEntity replaceLugarFallecimiento(Long artistaId, Long paisId) throws EntityNotFoundException {
+		log.info("Inicia proceso de actualizar el artista con id: ", artistaId);
+		Optional<ArtistaEntity> artistaEntity = artistaRepository.findById(artistaId);
+		if (artistaEntity.isEmpty())
+			throw new EntityNotFoundException(ErrorMessage.ARTISTA_NOT_FOUND);
+
+		Optional<PaisEntity> paisEntity = paisRepository.findById(paisId);
+		if (paisEntity.isEmpty())
+			throw new EntityNotFoundException(ErrorMessage.PAIS_NOT_FOUND);
+
+		artistaEntity.get().setLugarFallecimiento(paisEntity.get());
+		log.info("Termina proceso de actualizar el artista con id: ", artistaId);
+
+		return artistaEntity.get();
+	}	
+
+	/**
+	 * Remplazar el pais de un artista.
+	 *
+	 * @param artistaId      id del artista que se quiere actualizar.
+	 * @param paisId El id del pais que se será del artista.
+	 * @return el nuevo artista.
+	 */
+
+	@Transactional
+	public ArtistaEntity replaceLugarFallecimientoDuplicated(Long artistaId, Long paisId) throws EntityNotFoundException {
 		log.info("Inicia proceso de actualizar el artista con id: ", artistaId);
 		Optional<ArtistaEntity> artistaEntity = artistaRepository.findById(artistaId);
 		if (artistaEntity.isEmpty())
